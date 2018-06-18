@@ -11,6 +11,6 @@ def self_attention( x, r = 8, name = 'sa', reuse = False ) :
     fg = tf.matmul( f, g ) # n by n matrix
     fg = tf.nn.softmax( fg, axis = 1 ) 
     att = tf.matmul( fg, h_ ) # n by c matrix
-    att_fm = tf.reshape( att, [ -1, w, h, c ] ) 
+    att_fm = tf.reshape( att, [ -1, h, w, c ] ) 
     y = tf.get_variable( name + '_y', shape = [], dtype = tf.float32, initializer=tf.constant_initializer( 0 ) ) 
     return x + y * att_fm
